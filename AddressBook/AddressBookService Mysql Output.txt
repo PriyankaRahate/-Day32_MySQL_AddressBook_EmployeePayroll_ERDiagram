@@ -1,0 +1,370 @@
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ebookshop          |
+| information_schema |
+| mysql              |
+| payroll_service_93 |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+
+----------------------------------------------------------
+// UC1:- Ability to create a Address Book Service DataBase
+----------------------------------------------------------
+mysql> create database addressbookservice;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbookservice |
+| ebookshop          |
+| information_schema |
+| mysql              |
+| payroll_service_93 |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use addressbookservice;
+Database changed
+
+
+------------------------------------------------------------------
+//UC2:- Ability to create a Address Book Table with its attributes
+------------------------------------------------------------------
+mysql> create table addressbook (id int not null auto_increment, FirstName varchar(50) not null, LastName varchar(62) not null, Address varchar(50) not null, City varchar(63) not null, State varchar(70) not null, ZipCode varchar(20) not null, PhoneNumber varchar(30) not null, Email varchar(50) not null, Primary Key(id));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc addressbook;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| FirstName   | varchar(50) | NO   |     | NULL    |                |
+| LastName    | varchar(62) | NO   |     | NULL    |                |
+| Address     | varchar(50) | NO   |     | NULL    |                |
+| City        | varchar(63) | NO   |     | NULL    |                |
+| State       | varchar(70) | NO   |     | NULL    |                |
+| ZipCode     | varchar(20) | NO   |     | NULL    |                |
+| PhoneNumber | varchar(30) | NO   |     | NULL    |                |
+| Email       | varchar(50) | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+9 rows in set (0.01 sec)
+
+
+------------------------------------------------------
+//UC3:- Ability to insert new Contacts to Address Book
+------------------------------------------------------
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Almas', 'Banu', 'Gandhinagar', 'Harihar', 'Karnataka', '577601', '9607891967', 'almasbanu76@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------+---------+-----------+---------+-------------+-----------------------+
+| id | FirstName | LastName | Address     | City    | State     | ZipCode | PhoneNumber | Email                 |
++----+-----------+----------+-------------+---------+-----------+---------+-------------+-----------------------+
+|  1 | Almas     | Banu     | Gandhinagar | Harihar | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com |
++----+-----------+----------+-------------+---------+-----------+---------+-------------+-----------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('jyothi', 'Nagur', 'Vidyanagar', 'Davanagere', 'Karnataka', '577401', '9624891967', 'jyothi76@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Syeda', 'Inaya', 'BhagathSinghNagar', 'Davanagere', 'Karnataka', '577401', '9538192434', 'inaya6@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Ayat', 'Khanum', 'VishalNagar', 'Hubli', 'Karnataka', '537401', '9535692434', ayat6@gmail.com');
+    '> ^C
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Ayat', 'Khanum', 'VishalNagar', 'Hubli', 'Karnataka', '537401', '9535692434', 'ayat6@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      |
+|  4 | Ayat      | Khanum   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | ayat6@gmail.com       |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+
+4 rows in set (0.00 sec)
+
+
+----------------------------------------------------------------
+//UC4:- Ability to edit existing contact person using their name
+----------------------------------------------------------------
+mysql> select LastName from addressbook ORDER BY LastName;
++----------+
+| LastName |
++----------+
+| Banu     |
+| Inaya    |
+| Khanum   |
+| Nagur    |
++----------+
+4 rows in set (0.00 sec)
+
+mysql> select State from addressbook ORDER BY State;
++-----------+
+| State     |
++-----------+
+| Karnataka |
+| Karnataka |
+| Karnataka |
+| Karnataka |
++-----------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table addressbook add Contect_Type varchar(100);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com | NULL         |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    | NULL         |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      | NULL         |
+|  4 | Ayat      | Khanum   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | ayat6@gmail.com       | NULL         |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+4 rows in set (0.00 sec)
+
+
+mysql> insert into addressbook (FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email) values ('Jasmine', 'Bhasin', 'VishalNagar', 'Hubli', 'Karnataka', '537401', '9535692434', 'poo@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com | Best Friend  |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    | Friend       |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      | Friend       |
+|  4 | Ayat      | Khanum   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | ayat6@gmail.com       | Sister       |
+|  5 | Jasmine   | Bhasin   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | poo@gmail.com         | NULL         |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+5 rows in set (0.00 sec)
+
+
+-------------------------------------------------------
+//UC5:- Ability to delete a person using person's name
+-------------------------------------------------------
+mysql> Delete from addressbook
+    -> where FirstName = 'Ayat';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com | Best Friend  |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    | Friend       |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      | Friend       |
+|  5 | Jasmine   | Bhasin   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | poo@gmail.com         | NULL         |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+4 rows in set (0.00 sec)
+
+
+-------------------------------------------------------------------------------------
+//UC6:- Ability to Retrieve Person belonging to a City or State from the Address Book
+-------------------------------------------------------------------------------------
+
+mysql> select * from addressbook
+    -> where City = 'Hubli';
++----+-----------+----------+-------------+-------+-----------+---------+-------------+---------------+--------------+
+| id | FirstName | LastName | Address     | City  | State     | ZipCode | PhoneNumber | Email         | Contect_Type |
++----+-----------+----------+-------------+-------+-----------+---------+-------------+---------------+--------------+
+|  5 | Jasmine   | Bhasin   | VishalNagar | Hubli | Karnataka | 537401  | 9535692434  | poo@gmail.com | NULL         |
++----+-----------+----------+-------------+-------+-----------+---------+-------------+---------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from addressbook
+    -> where State = 'Karnataka';
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com | Best Friend  |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    | Friend       |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      | Friend       |
+|  5 | Jasmine   | Bhasin   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | poo@gmail.com         | NULL         |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+4 rows in set (0.00 sec)
+
+
+------------------------------------------------------------------------
+//UC7:- Ability to understand the size of address book by City and State
+------------------------------------------------------------------------
+
+mysql> select Count(*) from addressbook where City 'Davanagere';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Davanagere'' at line 1
+mysql> select Count(*) from addressbook where City = 'Davanagere';
++----------+
+| Count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select Count(*) from addressbook where State = 'Karnataka';
++----------+
+| Count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select * from addressbook
+    -> where FirstName like 'I%';
+Empty set (0.00 sec)
+
+mysql> select * from addressbook
+    -> where FirstName like 'S%';
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email            | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+------------------+--------------+
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com | Friend       |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from addressbook
+    -> where City like 'D%';
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+--------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email              | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+--------------------+--------------+
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com | Friend       |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com   | Friend       |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+--------------------+--------------+
+2 rows in set (0.00 sec)
+
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com | Best Friend  |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    | Friend       |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      | Friend       |
+|  5 | Jasmine   | Bhasin   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | poo@gmail.com         | NULL         |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+4 rows in set (0.00 sec)
+
+
+----------------------------------------------------
+// UC8 sorting the name alphbetically for given city
+----------------------------------------------------
+
+mysql> select FirstName,City from addressbook order by City;
++-----------+-----------+
+| FirstName | City       |
++-----------+-----------+
+| jyothi    | Davanagere |
+| Syeda     | Davanagere |
+| Almas     | Harihar    |
+| Jasmine   | Hubli      |
++-----------+-----------+
+4 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------------------------------------------------------------
+//UC9,UC11:- Ability to identify each Address Book with name and Type. - Here the type could Family, Friends, Profession.
+--------------------------------------------------------------------------------------------------------------------
+mysql> Update addressbook set Contact_Type = 'Friend' where id = 3;
+ERROR 1054 (42S22): Unknown column 'Contact_Type' in 'field list'
+mysql> Update addressbook set Contect_Type = 'Friend' where id = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com | NULL         |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    | NULL         |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      | Friend       |
+|  4 | Ayat      | Khanum   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | ayat6@gmail.com       | NULL         |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> Update addressbook set Contact_Type = 'Sister' where id = 4;
+ERROR 1054 (42S22): Unknown column 'Contact_Type' in 'field list'
+mysql> Update addressbook set Contect_Type = 'Sister' where id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> Update addressbook set Contect_Type = 'Best Friend' where id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> Update addressbook set Contect_Type = 'Friend' where id = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+| id | FirstName | LastName | Address           | City       | State     | ZipCode | PhoneNumber | Email                 | Contect_Type |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+|  1 | Almas     | Banu     | Gandhinagar       | Harihar    | Karnataka | 577601  | 9607891967  | almasbanu76@gmail.com | Best Friend  |
+|  2 | jyothi    | Nagur    | Vidyanagar        | Davanagere | Karnataka | 577401  | 9624891967  | jyothi76@gmail.com    | Friend       |
+|  3 | Syeda     | Inaya    | BhagathSinghNagar | Davanagere | Karnataka | 577401  | 9538192434  | inaya6@gmail.com      | Friend       |
+|  4 | Ayat      | Khanum   | VishalNagar       | Hubli      | Karnataka | 537401  | 9535692434  | ayat6@gmail.com       | Sister       |
++----+-----------+----------+-------------------+------------+-----------+---------+-------------+-----------------------+--------------+
+4 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------------
+//UC10:- Ability to get number of contact persons i.e. count by type
+--------------------------------------------------------------------
+
+mysql> select Count(PhoneNumber)
+    -> from addressbook
+    -> where City = 'Hubli';
++--------------------+
+| Count(PhoneNumber) |
++--------------------+
+|                  1 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select Count(PhoneNumber)
+    -> from addressbook
+    -> where State = 'Karnataka';
++--------------------+
+| Count(PhoneNumber) |
++--------------------+
+|                  4 |
++--------------------+
+1 row in set (0.00 sec)
